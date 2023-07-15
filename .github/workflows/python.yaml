@@ -20,12 +20,9 @@ jobs:
       
       - name: Display Python version
         run: |
-          echo "::set-output name=python-version::$(python -c 'import sys; print(sys.version)')"
-      
+          python -c "import sys; print(sys.version)" >> python-version.txt
+
       - name: Save Python version artifact
-        run: echo "${{ steps.display-python-version.outputs.python-version }}" > python-version.txt
-      
-      - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: python-versions
